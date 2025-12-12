@@ -1,0 +1,56 @@
+{
+  "name": "building-inspectors-tool",
+  "version": "1.0.0",
+  "description": "Building Inspectors Tool (Electron + PWA) with auto-updater and Tester Mode",
+  "main": "main.js",
+  "author": "Richard Merrill",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:stable": "electron-builder --publish always -c.publish[0].channel=latest",
+    "dist:beta": "electron-builder --publish always -c.publish[0].channel=beta"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.9.0",
+    "electron-updater": "^6.2.1",
+    "electron-log": "^5.0.0"
+  },
+  "build": {
+    "directories": {
+      "output": "dist"
+    },
+    "appId": "com.kratos0686.inspectors",
+    "productName": "Building Inspectors Tool",
+    "files": [
+      "../index.html",
+      "../assets/**/*",
+      "main.js",
+      "preload.js",
+      "splash.js",
+      "icon.png",
+      "icon.ico",
+      "icon.icns"
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "icon.icns",
+      "category": "public.app-category.business"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "icon.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "kratos0686",
+        "repo": "building-inspectors-releases"
+      }
+    ]
+  }
+}
